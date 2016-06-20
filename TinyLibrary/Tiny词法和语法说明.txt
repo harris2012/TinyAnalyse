@@ -1,0 +1,54 @@
+﻿/****************************语法规则&翻译模式**************************************/
+<program>				-> 	<stmt-sequence>	
+
+<stmt-sequence>		->	<stmt-sequence1>;<statement>
+									|<statement>
+
+<statement>			->	<if-stmt>
+									|<repeat-stmt>
+									|<assign-stmt>
+									|<read-stmt>
+									|<write-stmt>
+ 
+<if-stmt>					->	if <expr> then <stmt-sequence> end
+									|if <expr> then <stmt-sequence1> else <stmt-sequence2> end
+
+<repeat-stmt>			->repeat <stmt-sequence> until <expr>
+
+<assign-stmt>			-><identifier> := <expr>
+
+<read-stmt>				->read <identifier>
+
+<write-stmt>			->	write <expr>
+
+<expr>						-><simple-expr1> <comparison-op> <simple-expr2>
+									|<simple-expr>
+
+<comparison-op>		->	<|=
+
+<simple-expr>			->	<simple-expr1> <add-op> <term>
+									|<term>
+
+<add-op>					->	+|-
+
+<term>					->	<term1> <multiple-op> <factor>
+									|<factor>
+
+<factor>					->	(<expr>)
+									|<identifier>
+									|<number>
+
+/**************************************词法规则******************************************/
+<reserved word>		-> read | write | repeat | until | if | then | else | end
+
+<identifier>				-> <letter> | <letter><digit>
+
+<number>				-> <digit> | <digit><number>
+
+<operator>				-> < | = | := | ( | )|*|/|+|-
+
+<delimiter>				-> ; 
+
+<letter>					-> a | b | ... | z | A | B | ... | Z |
+
+<digit>						-> 0 | 1 | 2 | ... | 9 | 
